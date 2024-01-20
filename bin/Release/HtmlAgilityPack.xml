@@ -2733,6 +2733,142 @@
             <param name="htmlUrl">The requested URL, such as "http://Myserver/Mypath/Myfile.asp".</param>
             <param name="writer">The XmlTextWriter to which you want to save to.</param>
         </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.String,System.String)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.String,System.String,System.String)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+            <param name="domain">Domain to use for credentials in the web request</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+            <param name="domain">Domain to use for credentials in the web request</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+            <param name="domain">Domain to use for credentials in the web request</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+            <param name="domain">Domain to use for credentials in the web request</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.String,System.String)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="userName">Username to use for credentials in the web request</param>
+            <param name="password">Password to use for credentials in the web request</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Net.NetworkCredential)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="credentials">The credentials to use for authenticating the web request</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Net.NetworkCredential,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="url">Url to the html document</param>
+            <param name="credentials">The credentials to use for authenticating the web request</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.Uri,System.Text.Encoding,System.Net.NetworkCredential)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="uri">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="credentials">The credentials to use for authenticating the web request</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.Uri,System.Text.Encoding,System.Net.NetworkCredential,System.Threading.CancellationToken)">
+            <summary>
+            Begins the process of downloading an internet resource
+            </summary>
+            <param name="uri">Url to the html document</param>
+            <param name="encoding">The encoding to use while downloading the document</param>
+            <param name="credentials">The credentials to use for authenticating the web request</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        </member>
         <member name="P:HtmlAgilityPack.HtmlWeb.BrowserTimeout">
             <summary>Gets or sets the web browser timeout.</summary>
             

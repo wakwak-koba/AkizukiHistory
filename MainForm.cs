@@ -1,5 +1,6 @@
 ﻿using System.CodeDom;
 using System.Linq;
+using System.Net;
 
 namespace AkizukiHistory
 {
@@ -14,6 +15,7 @@ namespace AkizukiHistory
         {
             InitializeComponent();
 
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             this.Load += (sender, e) => webBrowser.Navigate(host + @"/catalog/customer/menu.aspx");
             this.Shown += (sender, e) => {
                 if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)

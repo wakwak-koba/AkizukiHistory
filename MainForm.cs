@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 
 namespace AkizukiHistory
 {
@@ -15,7 +13,7 @@ namespace AkizukiHistory
         {
             InitializeComponent();
 
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             this.Load += (sender, e) => webBrowser.Navigate(host + @"/catalog/customer/menu.aspx");
             this.Shown += (sender, e) => {
                 if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
@@ -35,7 +33,9 @@ namespace AkizukiHistory
                 for (int page = 1; ; page++)
                 {
                     htmlDoc.LoadHtml(GetResponse(new System.Uri(host  + @"/catalog/customer/history.aspx?ps=" + chunk.ToString() + "&p=" + page.ToString())));
-                    progressBar.Maximum = int.Parse(htmlDoc.DocumentNode.SelectSingleNode(@"//div[@class=""navipage_""]/b").InnerText);
+
+                    if (int.TryParse(htmlDoc.DocumentNode.SelectSingleNode(@"//div[@class=""navipage_""]/b").InnerText, out var maxPage))
+                        progressBar.Maximum = maxPage;
                     foreach (var uri in htmlDoc.DocumentNode.SelectNodes(@"//td[@class=""order_id_ order_detail_""]/a").Select(n => new System.Uri(host + n.Attributes["href"].Value)).ToArray())
                     {
                         var response = GetResponse(uri);
@@ -45,7 +45,7 @@ namespace AkizukiHistory
                         files.Add(orderid, file);
                         progressBar.Value++;
                     }
-                    if (page * chunk >= progressBar.Maximum) break;
+                    if (maxPage == 0 || page * chunk >= progressBar.Maximum) break;
                 }
 
                 // csv

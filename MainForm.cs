@@ -35,7 +35,7 @@ namespace AkizukiHistory
                     htmlDoc.LoadHtml(GetResponse(new System.Uri(host  + @"/catalog/customer/history.aspx?ps=" + chunk.ToString() + "&p=" + page.ToString())));
 
                     var orders = htmlDoc.DocumentNode.SelectNodes(@"//td[@class=""order_id_ order_detail_""]/a");
-                    if (int.TryParse(htmlDoc.DocumentNode.SelectSingleNode(@"//div[@class=""navipage_""]/b").InnerText, out var maxPage))
+                    if (int.TryParse(htmlDoc.DocumentNode.SelectSingleNode(@"//div[@class=""navipage_""]/b")?.InnerText, out var maxPage))
                         progressBar.Maximum = maxPage;
                     else
                         progressBar.Maximum = orders.Count;

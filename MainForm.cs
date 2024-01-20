@@ -34,9 +34,12 @@ namespace AkizukiHistory
                 {
                     htmlDoc.LoadHtml(GetResponse(new System.Uri(host  + @"/catalog/customer/history.aspx?ps=" + chunk.ToString() + "&p=" + page.ToString())));
 
+                    var orders = htmlDoc.DocumentNode.SelectNodes(@"//td[@class=""order_id_ order_detail_""]/a");
                     if (int.TryParse(htmlDoc.DocumentNode.SelectSingleNode(@"//div[@class=""navipage_""]/b").InnerText, out var maxPage))
                         progressBar.Maximum = maxPage;
-                    foreach (var uri in htmlDoc.DocumentNode.SelectNodes(@"//td[@class=""order_id_ order_detail_""]/a").Select(n => new System.Uri(host + n.Attributes["href"].Value)).ToArray())
+                    else
+                        progressBar.Maximum = orders.Count;
+                    foreach (var uri in orders.Select(n => new System.Uri(host + n.Attributes["href"].Value)))
                     {
                         var response = GetResponse(uri);
                         var orderid = System.Web.HttpUtility.ParseQueryString(uri.Query)["order_id"];
@@ -45,7 +48,7 @@ namespace AkizukiHistory
                         files.Add(orderid, file);
                         progressBar.Value++;
                     }
-                    if (maxPage == 0 || page * chunk >= progressBar.Maximum) break;
+                    if (page * chunk >= progressBar.Maximum) break;
                 }
 
                 // csv

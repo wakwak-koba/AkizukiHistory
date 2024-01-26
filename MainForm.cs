@@ -12,6 +12,11 @@ namespace AkizukiHistory
         System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog() { Description = "購入履歴詳細の保存先を選択してください", ShowNewFolderButton = true };
         System.Text.Encoding encoding = System.Text.Encoding.UTF8;
         System.Collections.Generic.SortedDictionary<string, System.IO.FileInfo> files = new System.Collections.Generic.SortedDictionary<string, System.IO.FileInfo>();
+
+        public System.IO.DirectoryInfo folder = null;
+        public string userID = null;
+        public string password = null;
+
         public MainForm()
         {
             InitializeComponent();
@@ -19,7 +24,9 @@ namespace AkizukiHistory
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             this.Load += (sender, e) => webBrowser.Navigate(host + @"/catalog/customer/menu.aspx");
             this.Shown += (sender, e) => {
-                if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                if(folder != null)
+                    dialog.SelectedPath = folder.FullName;
+                else if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                 {
                     this.Close();
                     return;
@@ -29,7 +36,16 @@ namespace AkizukiHistory
             {
                 var web = sender as System.Windows.Forms.WebBrowser;
                 if (web.Document.Body.InnerText.Contains(@"メールアドレスとパスワードを入力してログインしてください。"))
+                {
+                    if(!string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(password))
+                    {
+                        web.Document.GetElementById("login_uid").SetAttribute("value", userID); 
+                        web.Document.GetElementById("login_pwd").SetAttribute("value", password);
+                        var button = web.Document.Forms.OfType<System.Windows.Forms.HtmlElement>().Where(f => f.InnerHtml.Contains(@"ログインする")).First().All.OfType<System.Windows.Forms.HtmlElement>().Where(elm => "order".Equals(elm.Name)).First();
+                        button.InvokeMember("click");
+                    }
                     return;
+                }
 
                 if (web.Document.Body.InnerText.Contains(@"お客様のログイン情報を解除いたしました。"))
                 {
@@ -79,10 +95,13 @@ namespace AkizukiHistory
                     }
                     writer.Close();
                 }
-                System.Diagnostics.Process.Start(dialog.SelectedPath);
+                if(string.IsNullOrEmpty(userID) && string.IsNullOrEmpty(password))
+                    System.Diagnostics.Process.Start(dialog.SelectedPath);
+
                 webBrowser.Navigate(host + @"/catalog/customer/logout.aspx");
             };
         }
+
         private string GetResponse(System.Uri uri)
         {
             string cookie = webBrowser.Document.Cookie;

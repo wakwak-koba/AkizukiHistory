@@ -41,6 +41,7 @@ namespace AkizukiHistory
                     {
                         web.Document.GetElementById("login_uid").SetAttribute("value", userID); 
                         web.Document.GetElementById("login_pwd").SetAttribute("value", password);
+                        password = null;
                         var button = web.Document.Forms.OfType<System.Windows.Forms.HtmlElement>().Where(f => f.InnerHtml.Contains(@"ログインする")).First().All.OfType<System.Windows.Forms.HtmlElement>().Where(elm => "order".Equals(elm.Name)).First();
                         button.InvokeMember("click");
                     }
